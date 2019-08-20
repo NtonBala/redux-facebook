@@ -10,12 +10,17 @@ import Styles from './styles.m.css';
 import { store } from '../../init/store';
 
 // Actions
-import { showNextPhoto } from '../../bus/gallery/actions';
+import { showNextPhotoAC, showSelectedPhotoAC } from '../../bus/gallery/actions';
 
 @hot(module)
 export default class Gallery extends Component {
     _showNextPhoto = () => {
-        store.dispatch(showNextPhoto);
+        store.dispatch(showNextPhotoAC());
+        this.forceUpdate();
+    }
+
+    _showSelectedPhoto = (e) => {
+        store.dispatch(showSelectedPhotoAC(e.target.value));
         this.forceUpdate();
     }
 
@@ -36,16 +41,16 @@ export default class Gallery extends Component {
                 <div>
                     <button>←</button>
 
-                    <button className = { buttonActiveStyle1 } value = '0'>
+                    <button className = { buttonActiveStyle1 } value = '0' onClick = { this._showSelectedPhoto }>
                         1
                     </button>
-                    <button className = { buttonActiveStyle2 } value = '1'>
+                    <button className = { buttonActiveStyle2 } value = '1' onClick = { this._showSelectedPhoto }>
                         2
                     </button>
-                    <button className = { buttonActiveStyle3 } value = '2'>
+                    <button className = { buttonActiveStyle3 } value = '2' onClick = { this._showSelectedPhoto }>
                         3
                     </button>
-                    <button className = { buttonActiveStyle4 } value = '3'>
+                    <button className = { buttonActiveStyle4 } value = '3' onClick = { this._showSelectedPhoto }>
                         4
                     </button>
 
