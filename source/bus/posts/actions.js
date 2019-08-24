@@ -11,7 +11,7 @@ export const fillPosts = (posts) => {
     };
 };
 
-export const fetchPostsAsync = () => async (dispatch, getState) => {
+export const fetchPostsAsync = () => async (dispatch) => {
     dispatch({ type: FETCH_POSTS_ASYNC });
 
     const response = await api.posts.fetch();
