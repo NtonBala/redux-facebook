@@ -20,7 +20,7 @@ export default class Nav extends Component {
         logoutAsync: () => {},
     };
 
-    _getNav = () => {
+    _getNavJSX = () => {
         const { isAuthenticated, profile } = this.props;
 
         return isAuthenticated ?
@@ -58,7 +58,7 @@ export default class Nav extends Component {
     render () {
         const { isOnline } = this.props;
 
-        const navigation = this._getNav();
+        const navJSX = this._getNavJSX();
         const statusStyle = cx(Styles.status, {
             [Styles.online]:  isOnline,
             [Styles.offline]: !isOnline,
@@ -70,7 +70,7 @@ export default class Nav extends Component {
                     <div>{isOnline ? 'Онлайн' : 'Офлайн'}</div>
                     <span />
                 </div>
-                {navigation}
+                { navJSX }
             </section>
         );
     }
