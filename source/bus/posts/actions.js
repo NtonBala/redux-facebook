@@ -2,7 +2,7 @@
 import {
     FILL_POSTS,
     FETCH_POSTS_ASYNC,
-    FILL_POST,
+    CREATE_POST,
     CREATE_POST_ASYNC
 } from './types';
 
@@ -16,9 +16,9 @@ export const fillPosts = (posts) => {
     };
 };
 
-export const fillPost = (post) => {
+export const createPost = (post) => {
     return {
-        type:    FILL_POST,
+        type:    CREATE_POST,
         payload: post,
     };
 };
@@ -38,5 +38,5 @@ export const createPostAsync = (post) => async (dispatch) => {
     const response = await api.posts.create(post);
     const result = await response.json();
 
-    dispatch(fillPost(result.data));
+    dispatch(createPost(result.data));
 };
