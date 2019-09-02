@@ -1,13 +1,17 @@
 // Core
 import { createStore } from 'redux';
 
-// Reducer
+// Roots
 import { rootReducer } from './rootReducer';
+import { rootSaga } from './rootSaga';
 
-// Enhancer
-import { enhancer } from './middleware/core';
+// Middleware
+import { enhancer, sagaMiddleware } from './middleware/core';
 
 export const store = createStore(
     rootReducer,
     enhancer
 );
+
+// should be placed after redux store is created!!!
+sagaMiddleware.run(rootSaga);
