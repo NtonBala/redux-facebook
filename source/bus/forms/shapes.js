@@ -1,6 +1,9 @@
 // Core
 import { object, string, boolean } from 'yup';
 
+// Instruments
+import { invite } from '../../REST/config';
+
 export const login = {
     shape: {
         email:    '',
@@ -19,13 +22,15 @@ export const login = {
 };
 
 export const signup = {
+    // initial form state
     shape: {
-        firstName: '',
-        lastName:  '',
-        email:     '',
-        password:  '',
-        invite:    '',
+        firstName: 'Elon',
+        lastName:  'Mask',
+        email:     'elon.mask@space.x',
+        password:  '12345',
+        invite,
     },
+    // fields' validation rules
     schema: object().shape({
         firstName: string().required(),
         lastName:  string().required(),
