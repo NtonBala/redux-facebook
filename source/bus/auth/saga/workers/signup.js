@@ -5,6 +5,7 @@ import { put, apply } from 'redux-saga/effects';
 import { api } from '../../../../REST';
 import { authActions } from '../../../auth/actions';
 import { uiActions } from '../../../ui/actions';
+import { profileActions } from '../../../profile/actions';
 
 export function* signup ({ payload: userInfo }) {
     try {
@@ -17,8 +18,7 @@ export function* signup ({ payload: userInfo }) {
             throw new Error(message);
         }
 
-        console.log('-> profile:', profile);
-
+        yield put(profileActions.fillProfile(profile));
         yield put(authActions.authenticate());
     } catch (error) {
         yield put(uiActions.emitError(error, 'signup worker'));

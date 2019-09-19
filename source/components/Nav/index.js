@@ -7,11 +7,11 @@ import { connect } from 'react-redux';
 // Instruments
 import Styles from './styles.m.css';
 import { book } from '../../navigation/book';
-import { mockedProfile } from '../../instruments/mockedData';
 
 const mapStateToProps = (state) => {
     return {
         isAuthenticated: state.auth.get('isAuthenticated'),
+        profile:         state.profile,
     };
 };
 
@@ -19,7 +19,6 @@ const mapStateToProps = (state) => {
 export default class Nav extends Component {
     static defaultProps = {
         // State
-        profile:  mockedProfile,
         isOnline: false,
 
         // Actions
