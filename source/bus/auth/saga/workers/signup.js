@@ -1,6 +1,5 @@
 // Core
 import { put, apply } from 'redux-saga/effects';
-import { delay } from 'redux-saga';
 
 // Instruments
 import { api } from '../../../../REST';
@@ -11,19 +10,16 @@ export function* signup ({ payload: userInfo }) {
     try {
         yield put(uiActions.startFetching());
 
-        console.log('-> user info:', userInfo);
+        const response = yield apply(api, api.auth.signup, [userInfo]);
+        const { data: profile, message } = yield apply(response, response.json);
 
-        yield delay(2000);
+        if (response.status !== 200) {
+            throw new Error(message);
+        }
+
+        console.log('-> profile:', profile);
 
         yield put(authActions.authenticate());
-
-        // const response = yield apply(api, api.posts.fetch);
-        // const { data: posts, message } = yield apply(response, response.json);
-
-        // if (response.status !== 200) {
-        //     throw new Error(message);
-        // }
-
     } catch (error) {
         yield put(uiActions.emitError(error, 'signup worker'));
     } finally {
