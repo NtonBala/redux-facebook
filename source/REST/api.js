@@ -12,6 +12,18 @@ export const api = {
                 body: JSON.stringify(userInfo),
             });
         },
+        login ({ email, password }) {
+            return fetch(`${MAIN_URL}/user/login`, {
+                method:  'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    email,
+                    password,
+                }),
+            });
+        },
     },
 
     posts: {
