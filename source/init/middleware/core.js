@@ -1,6 +1,6 @@
 // Core
 import { applyMiddleware, compose } from 'redux';
-import { createBrowserHistory } from 'history';
+import { createHashHistory } from 'history';
 
 // Middleware
 import { createLogger } from 'redux-logger';
@@ -23,7 +23,7 @@ const logger = createLogger({
 const devTools = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__;
 const composeEnhancers = __DEV__ && devTools ? devTools : compose;
 
-const history = createBrowserHistory();
+const history = createHashHistory();
 const routerMiddleware = createRouterMiddleware(history);
 
 const sagaMiddleware = createSagaMiddleware();
