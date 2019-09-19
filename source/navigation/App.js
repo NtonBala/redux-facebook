@@ -10,19 +10,35 @@ import { Login, Signup, Feed, Profile, NewPassword } from '../pages';
 // Instruments
 import { book } from './book';
 
+const mapStateToProps = (state) => {
+    return {
+        isAuthenticated: state.auth.get('isAuthenticated'),
+    };
+};
+
 @hot(module)
 @withRouter
-@connect()
+@connect(mapStateToProps)
 export default class App extends Component {
     render () {
-        return (
+        const { isAuthenticated } = this.props;
+
+        return isAuthenticated ? (
+            <Switch>
+
+                <Route component = { Feed } path = { book.feed } />
+                <Route component = { Profile } path = { book.profile } />
+                <Route component = { NewPassword } path = { book.newPassword } />
+
+                <Redirect to = { book.feed } />
+
+            </Switch>
+        ) : (
             <Switch>
 
                 <Route component = { Login } path = { book.login } />
                 <Route component = { Signup } path = { book.signUp } />
-                <Route component = { Feed } path = { book.feed } />
-                <Route component = { Profile } path = { book.profile } />
-                <Route component = { NewPassword } path = { book.newPassword } />
+
                 <Redirect to = { book.login } />
 
             </Switch>
