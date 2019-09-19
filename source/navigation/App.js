@@ -1,7 +1,8 @@
 // Core
 import React, { Component } from 'react';
 import { hot } from 'react-hot-loader';
-import { Switch, Route, Redirect } from 'react-router-dom';
+import { Switch, Route, Redirect, withRouter } from 'react-router-dom';
+import { connect } from 'react-redux';
 
 // Pages
 import { Login, Signup, Feed, Profile, NewPassword } from '../pages';
@@ -10,6 +11,8 @@ import { Login, Signup, Feed, Profile, NewPassword } from '../pages';
 import { book } from './book';
 
 @hot(module)
+@withRouter
+@connect()
 export default class App extends Component {
     render () {
         return (
