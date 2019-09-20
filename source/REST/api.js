@@ -46,7 +46,7 @@ export const api = {
             return fetch(`${MAIN_URL}/feed`, {
                 method:  'GET',
                 headers: {
-                    'x-no-auth': groupId,
+                    Authorization: this.token,
                 },
             });
         },
@@ -54,7 +54,7 @@ export const api = {
             return fetch(`${MAIN_URL}/feed`, {
                 method:  'POST',
                 headers: {
-                    'x-no-auth':    groupId,
+                    Authorization:  this.token, //add token so server could identify the post's author
                     'Content-Type': 'application/json',
                 },
                 body: JSON.stringify({ comment }),
