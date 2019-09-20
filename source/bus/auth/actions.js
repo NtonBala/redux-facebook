@@ -16,10 +16,18 @@ export const authActions = {
             payload: userData,
         };
     },
+
     loginAsync: (credentials) => {
         return {
             type:    types.LOGIN_ASYNC,
             payload: credentials,
+        };
+    },
+
+    // Authenticate with token
+    authenticateAsync: () => {
+        return {
+            type: types.AUTHENTICATE_ASYNC,
         };
     },
 };
