@@ -7,11 +7,11 @@ import { authActions } from '../../../auth/actions';
 import { uiActions } from '../../../ui/actions';
 import { profileActions } from '../../../profile/actions';
 
-export function* login ({ payload: userCredentials }) {
+export function* login ({ payload: credentials }) {
     try {
         yield put(uiActions.startFetching());
 
-        const response = yield apply(api, api.auth.login, [userCredentials]);
+        const response = yield apply(api, api.auth.login, [credentials]);
         const { data: profile, message } = yield apply(response, response.json);
 
         if (response.status !== 200) {
