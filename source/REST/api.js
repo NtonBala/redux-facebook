@@ -39,6 +39,15 @@ export const api = {
                 body: JSON.stringify({ token: this.token }),
             });
         },
+        // Make request to invalidate JVT token on server
+        logout () {
+            return fetch(`${MAIN_URL}/user/logout`, {
+                method:  'GET',
+                headers: {
+                    Authorization: this.token,
+                },
+            });
+        },
     },
 
     posts: {
