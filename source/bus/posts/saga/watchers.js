@@ -5,10 +5,14 @@ import { takeEvery, all, call } from 'redux-saga/effects';
 import { types } from '../types';
 
 // Workers
-import { createPost, fetchPosts } from './workers';
+import { createPost, removePost, fetchPosts } from './workers';
 
 function* watchCreatePost () {
     yield takeEvery(types.CREATE_POST_ASYNC, createPost);
+}
+
+function* watchRemovePost () {
+    yield takeEvery(types.REMOVE_POST_ASYNC, removePost);
 }
 
 function* watchFetchPosts () {
@@ -18,6 +22,7 @@ function* watchFetchPosts () {
 export function* watchPosts () {
     yield all([
         call(watchCreatePost),
+        call(watchRemovePost),
         call(watchFetchPosts)
     ]);
 }
