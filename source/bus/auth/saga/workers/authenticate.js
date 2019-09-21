@@ -15,6 +15,16 @@ export function* authenticate () {
         const { data: profile, message } = yield apply(response, response.json);
 
         if (response.status !== 200) {
+            // Use 401 status returned by server for unsuccessful authentication attempt
+            // to fix case when token is expired (invalid)
+            // (token lives for 4 hours)
+            if (response.status === 401) {
+                yield apply(localStorage, localStorage.removeItem, ['token']);
+                yield apply(localStorage, localStorage.removeItem, ['remember']);
+
+                return null;
+            }
+
             throw new Error(message);
         }
 
