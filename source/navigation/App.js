@@ -12,10 +12,11 @@ import Public from './Public';
 import { Loading } from '../components';
 
 // Actions
+import { socketActions } from '../bus/socket/actions';
 import { authActions } from '../bus/auth/actions';
 
 // WebSocket
-import { joinSocketChannel } from '../init/socket';
+import { joinSocketChannel, socket } from '../init/socket';
 
 const mapStateToProps = (state) => {
     return {
@@ -24,8 +25,10 @@ const mapStateToProps = (state) => {
     };
 };
 
+// use object form of mapStateToProps to wrap actions with dispatch when theres no need for nested 'actions' object
 const mapDispatchToProps = {
     initializeAsync: authActions.initializeAsync,
+    ...socketActions,
 };
 
 @hot(module)
@@ -36,9 +39,17 @@ const mapDispatchToProps = {
 )
 export default class App extends Component {
     componentDidMount () {
-        this.props.initializeAsync();
+        const { initializeAsync, listenConnection } = this.props;
 
+        initializeAsync();
+
+        listenConnection();
         joinSocketChannel();
+    }
+
+    componentWillUnmount () {
+        socket.removeListener('connect');
+        socket.removeListener('disconnect');
     }
 
     render () {
