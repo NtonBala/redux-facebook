@@ -3,6 +3,7 @@ import { socket } from '../../init/socket';
 
 // Actions
 import { uiActions } from '../ui/actions';
+import { postsActions } from '../posts/actions';
 
 export const socketActions = { // use custom thunk middleware as logic will be very simple
     listenConnection: () => (dispatch) => {
@@ -12,6 +13,14 @@ export const socketActions = { // use custom thunk middleware as logic will be v
 
         socket.on('disconnect', () => { // 'disconnect' event is triggered when socket detects Internet is disconnected
             dispatch(uiActions.setOfflineState());
+        });
+    },
+
+    listenPosts: () => (dispatch) => {
+        socket.on('create', (event) => {
+            const { data: post } = JSON.parse(event);
+
+            dispatch(postsActions.createPost(post));
         });
     },
 };
