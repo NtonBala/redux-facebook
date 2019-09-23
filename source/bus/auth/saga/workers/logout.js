@@ -4,11 +4,14 @@ import { replace } from 'react-router-redux';
 
 // Instruments
 import { api } from '../../../../REST';
+import { book } from '../../../../navigation/book';
+
+// Actions
 import { authActions } from '../../../auth/actions';
 import { uiActions } from '../../../ui/actions';
 import { profileActions } from '../../../profile/actions';
 import { postsActions } from '../../../posts/actions';
-import { book } from '../../../../navigation/book';
+import { usersActions } from '../../../users/actions';
 
 export function* logout () {
     try {
@@ -29,6 +32,7 @@ export function* logout () {
 
         yield put(profileActions.clearProfile());
         yield put(postsActions.clearPosts());
+        yield put(usersActions.clearUsers());
 
         yield put(uiActions.stopFetching());
         yield put(authActions.logout());

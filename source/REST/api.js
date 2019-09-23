@@ -16,6 +16,7 @@ export const api = {
                 body: JSON.stringify(userInfo),
             });
         },
+
         login ({ email, password }) {
             return fetch(`${MAIN_URL}/user/login`, {
                 method:  'POST',
@@ -28,6 +29,7 @@ export const api = {
                 }),
             });
         },
+
         // Method for authentication with the help of token
         // used in appropriate worker saga
         authenticate () {
@@ -39,6 +41,7 @@ export const api = {
                 body: JSON.stringify({ token: this.token }),
             });
         },
+
         // Make request to invalidate JVT token on server
         logout () {
             return fetch(`${MAIN_URL}/user/logout`, {
@@ -59,6 +62,7 @@ export const api = {
                 },
             });
         },
+
         create (comment) {
             return fetch(`${MAIN_URL}/feed`, {
                 method:  'POST',
@@ -69,6 +73,7 @@ export const api = {
                 body: JSON.stringify({ comment }),
             });
         },
+
         remove (postId) {
             return fetch(`${MAIN_URL}/feed/${postId}`, {
                 method:  'DELETE',
@@ -77,9 +82,21 @@ export const api = {
                 },
             });
         },
+
         like (postId) {
             return fetch(`${MAIN_URL}/feed/like/${postId}`, {
                 method:  'PUT',
+                headers: {
+                    Authorization: this.token,
+                },
+            });
+        },
+    },
+
+    users: {
+        fetch () {
+            return fetch(`${MAIN_URL}/user/all`, {
+                method:  'GET',
                 headers: {
                     Authorization: this.token,
                 },
