@@ -4,7 +4,6 @@ import { Link } from 'react-router-dom';
 import { Form, Control } from 'react-redux-form';
 import cx from 'classnames';
 import { connect } from 'react-redux';
-import { Map } from 'immutable';
 
 // Instruments
 import Styles from './styles.m.css';
@@ -14,8 +13,8 @@ import { book } from '../../navigation/book';
 // Components
 import { Input } from '../../components';
 
-// // Actions
-// import { authActions } from '../../bus/auth/actions';
+// Actions
+import { profileActions } from '../../bus/profile/actions';
 
 const mapStateToProps = (state) => {
     return {
@@ -24,22 +23,15 @@ const mapStateToProps = (state) => {
     };
 };
 
-// const mapDispatchToProps = {
-//     loginAsync: authActions.loginAsync,
-// };
+const mapDispatchToProps = profileActions;
 
 @connect(
     mapStateToProps,
-    // mapDispatchToProps
+    mapDispatchToProps
 )
 export default class Profile extends Component {
     static defaultProps = {
-        // State
-        isFetching: false,
-        profile:    Map(),
-
         // Actions
-        updateNameAsync:   () => {},
         updateAvatarAsync: () => {},
     };
 

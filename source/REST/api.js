@@ -103,4 +103,17 @@ export const api = {
             });
         },
     },
+
+    profile: {
+        update (profileInfo) {
+            return fetch(`${MAIN_URL}/user`, {
+                method:  'PUT',
+                headers: {
+                    Authorization:  this.token,
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(profileInfo),
+            });
+        },
+    },
 };
