@@ -12,7 +12,7 @@ export function* updateName ({ payload: {
     try {
         yield put(uiActions.startFetching());
 
-        const response = yield apply(api, api.profile.update, [{
+        const response = yield apply(api, api.profile.updateProfile, [{
             firstName, lastName,
         }]);
         const { data: updatedProfile, message } = yield apply(response, response.json);

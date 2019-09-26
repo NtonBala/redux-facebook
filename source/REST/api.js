@@ -105,7 +105,7 @@ export const api = {
     },
 
     profile: {
-        update (profileInfo) {
+        updateProfile (profileInfo) {
             return fetch(`${MAIN_URL}/user`, {
                 method:  'PUT',
                 headers: {
@@ -113,6 +113,16 @@ export const api = {
                     'Content-Type': 'application/json',
                 },
                 body: JSON.stringify(profileInfo),
+            });
+        },
+        // Files are sent to the server via body using form-data format.
+        updateAvatar (avatarFormData) {
+            return fetch(`${MAIN_URL}/image`, {
+                method:  'POST',
+                headers: {
+                    Authorization: this.token,
+                },
+                body: avatarFormData,
             });
         },
     },
