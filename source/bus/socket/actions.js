@@ -23,6 +23,12 @@ export const socketActions = { // use custom thunk middleware as logic will be v
             dispatch(postsActions.createPost(post));
         });
 
+        socket.on('remove', (event) => {
+            const { data: postId } = JSON.parse(event);
+
+            dispatch(postsActions.removePost(postId));
+        });
+
         socket.on('like', (event) => {
             const { data, meta } = JSON.parse(event);
 
