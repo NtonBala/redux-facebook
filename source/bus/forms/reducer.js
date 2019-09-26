@@ -5,7 +5,7 @@ export const formsReducer = combineForms(
     {
         user: {
             profile: {
-                firstName: 'test',
+                firstName: '',
                 lastName:  '',
                 avatar:    [],
             },

@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { Form, Control } from 'react-redux-form';
 import cx from 'classnames';
+import { connect } from 'react-redux';
 import { Map } from 'immutable';
 
 // Instruments
@@ -13,6 +14,24 @@ import { book } from '../../navigation/book';
 // Components
 import { Input } from '../../components';
 
+// // Actions
+// import { authActions } from '../../bus/auth/actions';
+
+const mapStateToProps = (state) => {
+    return {
+        isFetching: state.ui.get('isFetching'),
+        profile:    state.profile,
+    };
+};
+
+// const mapDispatchToProps = {
+//     loginAsync: authActions.loginAsync,
+// };
+
+@connect(
+    mapStateToProps,
+    // mapDispatchToProps
+)
 export default class Profile extends Component {
     static defaultProps = {
         // State
