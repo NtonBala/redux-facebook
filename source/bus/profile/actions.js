@@ -38,10 +38,10 @@ export const profileActions = {
         };
     },
 
-    updatePasswordAsync: (newPassword) => {
+    updatePasswordAsync: (passwordData) => {
         return {
             type:    types.UPDATE_PASSWORD_ASYNC,
-            payload: newPassword,
+            payload: passwordData,
         };
     },
 };
