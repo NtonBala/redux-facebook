@@ -15,6 +15,27 @@ const userProfile = {
     token,
 };
 
+const users = [
+    {
+        id:        'TEST_ID_1',
+        avatar:    'TEST_AVATAR',
+        firstName: 'Walter-1',
+        lastName:  'White',
+    },
+    {
+        id:        'TEST_ID_2',
+        avatar:    'TEST_AVATAR',
+        firstName: 'Walter-2',
+        lastName:  'White',
+    },
+    {
+        id:        'TEST_ID_3',
+        avatar:    'TEST_AVATAR',
+        firstName: 'Walter-3',
+        lastName:  'White',
+    }
+];
+
 const credentials = {
     email:    'test@email.com',
     password: '1111',
@@ -49,6 +70,7 @@ const url = 'https://www.url.com';
 
 global.__ = {
     userProfile,
+    users,
     errorMessage,
     token,
     error,
