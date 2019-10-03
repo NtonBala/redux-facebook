@@ -1,6 +1,6 @@
 // Core
 import { put, apply } from 'redux-saga/effects';
-import { actions } from 'react-redux-form';
+import { actions as rrfActions } from 'react-redux-form';
 
 // Instruments
 import { api } from '../../../../REST';
@@ -28,7 +28,7 @@ export function* updateAvatar ({ payload: [newAvatar] }) {
 
         yield put(profileActions.updateAvatar(newAvatarUrl));
 
-        yield put(actions.reset('forms.user.profile.avatar')); // Reset profile form avatar Control state
+        yield put(rrfActions.reset('forms.user.profile.avatar')); // Reset profile form avatar Control state
     } catch (error) {
         yield put(uiActions.emitError(error, 'updateAvatar worker'));
     } finally {
