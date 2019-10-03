@@ -16,8 +16,8 @@ const signupAction = authActions.signupAsync(__.userProfile);
 const saga = cloneableGenerator(signup)(signupAction);
 let clone = null;
 
-describe("signup saga:", () => {
-    describe("should pass until response received:", () => {
+describe('signup saga:', () => {
+    describe('should pass until response received:', () => {
         test('should yield "put" effect dispatching "startFetching" action', () => {
             expect(saga.next().value).toEqual(put(uiActions.startFetching()));
         });
@@ -32,7 +32,7 @@ describe("signup saga:", () => {
     });
 
     // Unsuccessful fetch request
-    describe("should handle 400 status response", () => {
+    describe('should handle 400 status response', () => {
         test('should yield "apply" effect calling response.json method on 400 status response, returned by fetch request', () => {
             expect(clone.next(__.fetchResponseFail400).value).toEqual(
                 apply(__.fetchResponseFail400, __.fetchResponseFail400.json)
@@ -49,13 +49,13 @@ describe("signup saga:", () => {
             expect(clone.next().value).toEqual(put(uiActions.stopFetching()));
         });
 
-        test("should finish", () => {
+        test('should finish', () => {
             expect(clone.next().done).toBe(true);
         });
     });
 
     // Successful fetch request
-    describe("should handle 200 status response", () => {
+    describe('should handle 200 status response', () => {
         test('should yield "apply" effect calling response.json method on 200 status response, returned by fetch request', () => {
             expect(saga.next(__.fetchResponseSuccess).value).toEqual(
                 apply(__.fetchResponseSuccess, __.fetchResponseSuccess.json)
@@ -155,7 +155,7 @@ Object {
 `);
         });
 
-        test("should finish", () => {
+        test('should finish', () => {
             expect(saga.next().done).toBe(true);
         });
     });
