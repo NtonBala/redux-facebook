@@ -6,6 +6,7 @@ const successMesasge = 'TEST_SUCCESS_MESSAGE.';
 const errorMessage = 'TEST_ERROR_MESSAGE.';
 const token = 'TEST_TOKEN';
 const error = new Error(errorMessage);
+const meta = { action: 'TEST_ACTION' };
 
 const userProfile = {
     id:        'TEST_ID',
@@ -96,6 +97,7 @@ global.__ = {
     newName,
     newAvatar,
     newPassword,
+    meta,
 };
 global.fetch = fetch;
 global.localStorage = new LocalStorage();
