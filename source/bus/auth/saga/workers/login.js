@@ -1,6 +1,6 @@
 // Core
 import { put, apply } from 'redux-saga/effects';
-import { actions } from 'react-redux-form';
+import { actions as rrfActions } from 'react-redux-form';
 
 // Instruments
 import { api } from '../../../../REST';
@@ -27,9 +27,9 @@ export function* login ({ payload: credentials }) {
 
         yield put(profileActions.fillProfile(profile));
 
-        // actions.change() - action that changes form's field state in Redux store
-        yield put(actions.change('forms.user.profile.firstName', profile.firstName));
-        yield put(actions.change('forms.user.profile.lastName', profile.lastName));
+        // rrfActions.change() - action that changes form's field state in Redux store
+        yield put(rrfActions.change('forms.user.profile.firstName', profile.firstName));
+        yield put(rrfActions.change('forms.user.profile.lastName', profile.lastName));
 
         yield put(authActions.authenticate());
     } catch (error) {
