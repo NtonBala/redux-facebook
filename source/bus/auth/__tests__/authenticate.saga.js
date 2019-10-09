@@ -38,4 +38,14 @@ describe('authenticate saga:', () => {
             .put(authActions.initialize())
             .run();
     });
+
+    test('should complete a 400 status response scenario', async () => {
+        await expectSaga(authenticate)
+            .put(uiActions.startFetching())
+            .provide([[apply(api, api.auth.authenticate), __.fetchResponseFail400]])
+            .put(uiActions.emitError(__.error, 'authenticate worker'))
+            .put(uiActions.stopFetching())
+            .put(authActions.initialize())
+            .run();
+    });
 });
