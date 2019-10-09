@@ -2,7 +2,7 @@
 import { LocalStorage } from './mocks/localStorage';
 import { fetch } from './mocks/fetch';
 
-const successMesasge = 'TEST_SUCCESS_MESSAGE.';
+const successMessage = 'TEST_SUCCESS_MESSAGE.';
 const errorMessage = 'TEST_ERROR_MESSAGE.';
 const token = 'TEST_TOKEN';
 const error = new Error(errorMessage);
@@ -18,21 +18,9 @@ const userProfile = {
 
 const users = [
     {
-        id:        'TEST_ID_1',
+        id:        'TEST_ID',
         avatar:    'TEST_AVATAR',
-        firstName: 'Walter-1',
-        lastName:  'White',
-    },
-    {
-        id:        'TEST_ID_2',
-        avatar:    'TEST_AVATAR',
-        firstName: 'Walter-2',
-        lastName:  'White',
-    },
-    {
-        id:        'TEST_ID_3',
-        avatar:    'TEST_AVATAR',
-        firstName: 'Walter-3',
+        firstName: 'Walter',
         lastName:  'White',
     }
 ];
@@ -45,7 +33,12 @@ const credentials = {
 
 const responseDataSuccess = {
     data:    userProfile,
-    message: successMesasge,
+    message: successMessage,
+};
+
+const responseUsersDataSuccess = {
+    data:    users,
+    message: successMessage,
 };
 
 const responseDataFail = {
@@ -88,6 +81,7 @@ global.__ = {
     token,
     error,
     responseDataSuccess,
+    responseUsersDataSuccess,
     responseDataFail,
     fetchResponseSuccess,
     fetchResponseFail401,
