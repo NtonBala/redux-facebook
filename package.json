@@ -28,7 +28,7 @@
         "gsap": "^2.0.1",
         "history": "^4.7.2",
         "immutable": "~4.0.0-rc.9",
-        "moment": "^2.22.2",
+        "moment": "^2.29.2",
         "react": "^16.4.1",
         "react-dom": "^16.4.1",
         "react-flip-move": "~3.0.2",
